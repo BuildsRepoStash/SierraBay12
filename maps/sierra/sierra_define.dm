@@ -35,14 +35,14 @@
 	evac_controller_type = /datum/evacuation_controller/starship/fast //[SIERRA-EDIT] evac_controller_type = /datum/evacuation_controller/starship/
 
 	default_law_type = /datum/ai_laws/nanotrasen
-	use_overmap = 1
-	num_exoplanets = 1
-	using_sun = TRUE
+	use_overmap = 0
+	num_exoplanets = 0
+	using_sun = FALSE
 	planet_size = list(129,129)
 
 //	minimum_players = 0 its already 0
 
-	away_site_budget = 5.5 // Было 5, увеличили на 10% вместе с уменьешением цены для одноуровневых авеек ~bear1ake
+	away_site_budget = 0 // Было 5, увеличили на 10% вместе с уменьешением цены для одноуровневых авеек ~bear1ake
 	min_offmap_players = 10
 
 	id_hud_icons = 'maps/sierra/icons/assignment_hud.dmi'

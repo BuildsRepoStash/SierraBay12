@@ -1,0 +1,9 @@
+#ifndef MODPACK_FACTION_UNIFVEND
+#define MODPACK_FACTION_UNIFVEND
+
+#include "_faction_unifvend.dm"
+
+//#include "faction_uniform.dm"
+#include "faction_unif_list/ec.dm"
+
+#endif

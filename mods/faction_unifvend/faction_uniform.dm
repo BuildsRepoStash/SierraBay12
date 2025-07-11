@@ -1,4 +1,14 @@
-/obj/machinery/uniform_vendor
+/obj/item/card/id
+	var/faction
+
+/obj/item/card/id/Initialize()
+	. = ..()
+	if(istype(loc, /mob/living/carbon)) // might give us some runtime, cause
+		var/mob/living/carbon/card_owner = loc
+		faction = card_owner.client.prefs.cultural_info[TAG_FACTION] // need that for no char.setup abuse
+
+
+/obj/machinery/uniform_vendor/faction
 	name = "uniform vendor"
 	desc= "A uniform vendor for utility, service, and dress uniforms."
 	icon = 'icons/obj/machines/vending.dmi'
@@ -10,26 +20,10 @@
 	// Power
 	use_power = 1
 	idle_power_usage = 10
-	var/vend_power_usage = 150 //actuators and stuff
+	vend_power_usage = 150 //actuators and stuff
 
-	var/obj/item/card/id/ID
-	var/list/uniforms = list()
-	var/list/selected_outfit = list()
-	var/global/list/issued_items = list()
 
-/obj/machinery/uniform_vendor/on_update_icon()
-	if(MACHINE_IS_BROKEN(src))
-		icon_state = "[initial(icon_state)]-broken"
-	else if(is_powered())
-		icon_state = initial(icon_state)
-	else
-		icon_state = "[initial(icon_state)]-off"
-
-/obj/machinery/uniform_vendor/interface_interact(mob/user)
-	interact(user)
-	return TRUE
-
-/obj/machinery/uniform_vendor/interact(mob/user)
+/obj/machinery/uniform_vendor/faction/interact(mob/user)
 	var/dat = list()
 	dat += "User ID: <a href='byond://?src=\ref[src];ID=1'>[ID ? "[ID.registered_name], [ID.military_rank], [ID.military_branch]" : "--------"]</a>"
 	dat += "<hr>"
@@ -38,7 +32,7 @@
 	else
 		var/datum/job/job = SSjobs.get_by_path(ID.job_access_type)
 		if(job)
-			uniforms = find_uniforms(ID.military_rank, ID.military_branch, job.department_flag)
+			uniforms = find_uniforms(ID.military_rank, ID.military_branch, job.department_flag, ID.faction) /////////////////////////////////////
 		for(var/T in uniforms)
 			dat += "<b>[T]</b> <a href='byond://?src=\ref[src];get_all=[T]'>Select All</a>"
 			var/list/uniform = uniforms[T]
@@ -58,63 +52,6 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/uniform_vendor/OnTopic(mob/user, href_list)
-	if(href_list["ID"])
-		if(ID)
-			if(!issilicon(user))
-				user.put_in_hands(ID)
-			else
-				ID.dropInto(loc)
-			ID = null
-			selected_outfit.Cut()
-		else
-			var/obj/item/card/id/I = user.get_active_hand()
-			if(istype(I) && user.unEquip(I, src))
-				ID = I
-		. = TOPIC_REFRESH
-	if(href_list["get_all"])
-		if(!(href_list["get_all"] in uniforms))
-			return TOPIC_NOACTION
-		var/list/addition = uniforms[href_list["get_all"]]
-		for(var/G in addition)
-			if(can_issue(G))
-				selected_outfit |= addition
-		. = TOPIC_REFRESH
-	if(href_list["add"])
-		var/uniform_path = locate(href_list["add"])
-		if(ispath(uniform_path))
-			selected_outfit |= uniform_path
-			. = TOPIC_REFRESH
-		else
-			. = TOPIC_NOACTION
-	if(href_list["rem"])
-		selected_outfit -= locate(href_list["rem"])
-		. = TOPIC_REFRESH
-	if(href_list["vend"])
-		flick("uniform-vend", src)
-		spawn_uniform(selected_outfit)
-		selected_outfit.Cut()
-		. = TOPIC_REFRESH
-	if(.)
-		attack_hand(user)
-
-/obj/machinery/uniform_vendor/use_tool(obj/item/tool, mob/living/user, list/click_params)
-	if(istype(tool, /obj/item/clothingbag))
-		if(length(tool.contents))
-			to_chat(user, SPAN_NOTICE("You must empty \the [tool] before you can put it in \the [src]."))
-			return TRUE
-		to_chat(user, SPAN_NOTICE("You put \the [tool] into \the [src]'s recycling slot."))
-		qdel(tool)
-		return TRUE
-
-	else if(istype(tool, /obj/item/card/id) && !ID && user.unEquip(tool, src))
-		to_chat(user, SPAN_NOTICE("You slide \the [tool] into \the [src]!"))
-		ID = tool
-		attack_hand(user)
-		return TRUE
-
-	return ..()
-
 /*	Outfit structures
 	branch
 	branch/department
@@ -124,14 +61,21 @@
 	The one exception to the above is the command department, due to the fact that you have to be an officer to
 	be in command, and there are no variants as a result. Also no special CO uniform :(
 */
-/obj/machinery/uniform_vendor/proc/find_uniforms(datum/mil_rank/user_rank, datum/mil_branch/user_branch, department) //returns 1 if found branch and thus has a base uniform, 2, branch and department, 0 if failed.
+/obj/machinery/uniform_vendor/faction/find_uniforms(datum/mil_rank/user_rank, datum/mil_branch/user_branch, department, datum/preferences/user_faction) //returns 1 if found branch and thus has a base uniform, 2, branch and department, 0 if failed.
 	var/singleton/hierarchy/mil_uniform/user_outfit = GET_SINGLETON(/singleton/hierarchy/mil_uniform)
 	var/mil_uniforms = user_outfit
-	for(var/singleton/hierarchy/mil_uniform/child in user_outfit.children)
-		if(istype(user_branch,child.branches))
-			user_outfit = child
 
-	if(user_outfit == mil_uniforms) //We haven't found a branch
+	if(istype(user_branch, /datum/mil_branch/contractor)) // Only contractors should be have in-faction fluff
+		for(var/singleton/hierarchy/mil_uniform/child in user_outfit.children) // If not contractor, we should check a branch
+			if(user_faction == child.faction)
+				user_outfit = child
+
+	else
+		for(var/singleton/hierarchy/mil_uniform/child in user_outfit.children) // If not contractor, we should check a branch
+			if(istype(user_branch,child.branches))
+				user_outfit = child
+
+	if(user_outfit == mil_uniforms) //We haven't found a branch/faction
 		return null //Return no uniforms, which will cause the machine to spit out an error.
 
 	// we have found a branch.
@@ -161,9 +105,8 @@
 						user_outfit = child
 
 	return populate_uniforms(user_outfit) //Generate uniform lists.
-
-
-/obj/machinery/uniform_vendor/proc/populate_uniforms(singleton/hierarchy/mil_uniform/user_outfit)
+/*
+/obj/machinery/uniform_vendor/faction/populate_uniforms(singleton/hierarchy/mil_uniform/user_outfit) // We need it for Away-locs and others
 	var/list/res = list()
 	res["PT"] = list(
 		user_outfit.pt_under,
@@ -183,7 +126,7 @@
 		user_outfit.service_skirt,
 		user_outfit.service_over,
 		user_outfit.service_shoes,
-		user_outfit.service_heels,
+//		user_outfit.service_heels,
 		user_outfit.service_hat,
 		user_outfit.service_gloves
 		)
@@ -195,7 +138,7 @@
 		user_outfit.dress_skirt,
 		user_outfit.dress_over,
 		user_outfit.dress_shoes,
-		user_outfit.dress_heels,
+//		user_outfit.dress_heels,
 		user_outfit.dress_hat,
 		user_outfit.dress_gloves
 		)
@@ -203,31 +146,4 @@
 		res["Dress Extras"] = user_outfit.dress_extra
 
 	return res
-
-/obj/machinery/uniform_vendor/proc/spawn_uniform(list/selected_outfit)
-	listclearnulls(selected_outfit)
-	if(!issued_items[user_id()])
-		issued_items[user_id()] = list()
-	var/list/checkedout = issued_items[user_id()]
-	if(length(selected_outfit) > 1)
-		var/obj/item/clothingbag/bag = new /obj/item/clothingbag
-		for(var/item in selected_outfit)
-			new item(bag)
-			checkedout += item
-		bag.dropInto(loc)
-	else if (length(selected_outfit))
-		var/obj/item/clothing/C = selected_outfit[1]
-		new C(get_turf(src))
-		checkedout += C
-
-/obj/machinery/uniform_vendor/proc/user_id()
-	if(!ID)
-		return "UNKNOWN"
-	else
-		return "[ID.registered_name], [ID.military_rank], [ID.military_branch]"
-
-/obj/machinery/uniform_vendor/proc/can_issue(gear)
-	var/list/issued = issued_items[user_id()]
-	if(!issued || !length(issued))
-		return TRUE
-	return !(gear in issued)
+*/
