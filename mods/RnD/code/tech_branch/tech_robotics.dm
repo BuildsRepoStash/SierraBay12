@@ -23,7 +23,7 @@
 	y = 0.4
 	icon = "cpu_small"
 
-	required_technologies = list(/datum/technology/robo)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 750
 
@@ -38,7 +38,7 @@
 	y = 0.4
 	icon = "circuit"
 
-	required_technologies = list(/datum/technology/robo)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 750
 
@@ -55,7 +55,7 @@
 	y = 0.3
 	icon = "roboscanner"
 
-	required_technologies = list(/datum/technology/robo)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 2500
 
@@ -70,11 +70,11 @@
 	y = 0.4
 	icon = "mechloader"
 
-	required_technologies = list(/datum/technology/robo)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 1000
 
-	unlocks_designs = list("mechfab","mech_software_engineering","mech_software_utility","treads","mech_frame", "mech_armour_civil", "mech_control_module", "powerloader_head", "powerloader_body", "right_powerloader_arm", "left_powerloader_arm", "right_powerloader_leg", "left_powerloader_leg", "quad_legs", "sphere_body")
+	unlocks_designs = list("mechfab","mech_software_engineering","mech_software_utility","treads","mech_frame", "mech_armour_basic", "mech_control_module", "powerloader_head", "powerloader_body", "right_powerloader_arm", "left_powerloader_arm",  "right_powerloader_leg", "left_powerloader_leg", "quad_legs", "sphere_body","mech_armour_em","mech_armour_radproof" )
 
 /datum/technology/robo/adv_augments
 	name = "Advanced Augments"
@@ -85,7 +85,7 @@
 	y = 0.6
 	icon = "pcpu_small"
 
-	required_technologies = list(/datum/technology/robo/basic_augments)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 2500
 
@@ -100,11 +100,11 @@
 	y = 0.6
 	icon = "hardsuitmodule"
 
-	required_technologies = list(/datum/technology/robo/basic_hardsuitmods)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 2500
 
-	unlocks_designs = list("null _suit","rig_nvg","rig_plasmacutter", "rig_rcd","rig_jets","rig_decompiler","rig_powersink","rig_ai_container","rig_taser","rig_egun","rig_cooler","rig_kinetic", "self_repair", "ai_advanced")
+	unlocks_designs = list("null _suit","rig_nvg","rig_plasmacutter", "rig_rcd","rig_jets","rig_decompiler","rig_powersink","rig_ai_container","rig_taser","rig_egun","rig_cooler","rig_kinetic", "rig_radiation", "self_repair", "ai_advanced")
 
 /datum/technology/robo/heavy_mech
 	name = "Heavy Mech Design"
@@ -115,7 +115,7 @@
 	y = 0.7
 	icon = "mechheavy"
 
-	required_technologies = list(/datum/technology/robo/loader_mech)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 2000
 
@@ -130,7 +130,7 @@
 	y = 0.7
 	icon = "mechlight"
 
-	required_technologies = list(/datum/technology/robo/loader_mech)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 1500
 
@@ -145,11 +145,11 @@
 	y = 0.7
 	icon = "mechcombat"
 
-	required_technologies = list(/datum/technology/robo/loader_mech)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 2500
 
-	unlocks_designs = list("combat_head", "combat_body", "right_combat_arm", "left_combat_arm", "right_combat_leg", "left_combat_leg", "mech_armour_combat", "mech_armour_buletproof","mech_armour_laserproof")
+	unlocks_designs = list("combat_head", "combat_body", "right_combat_arm", "left_combat_arm", "right_combat_leg", "left_combat_leg", "mech_armour_combat")
 
 
 /datum/technology/robo/mech_equipment
@@ -161,7 +161,7 @@
 	y = 0.4
 	icon = "mechclaw"
 
-	required_technologies = list(/datum/technology/robo/loader_mech)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 500
 
@@ -176,7 +176,7 @@
 	y = 0.5
 	icon = "eva"
 
-	required_technologies = list(/datum/technology/robo/mech_equipment)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 1500
 
@@ -191,7 +191,7 @@
 	y = 0.4
 	icon = "mechlaser"
 
-	required_technologies = list(/datum/technology/robo/mech_equipment)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 1500
 
@@ -206,7 +206,7 @@
 	y = 0.3
 	icon = "mechsleeper"
 
-	required_technologies = list(/datum/technology/robo/mech_equipment)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 500
 
@@ -221,7 +221,7 @@
 	y = 0.2
 	icon = "aicircuit"
 
-	required_technologies = list(/datum/technology/robo)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 1000
 
@@ -236,7 +236,7 @@
 	y = 0.2
 	icon = "posibrain"
 
-	required_technologies = list(/datum/technology/robo/roboupgrade)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 1000
 
@@ -251,7 +251,7 @@
 	y = 0.2
 	icon = "ai"
 
-	required_technologies = list(/datum/technology/robo/robotconstruction)
+	required_technologies = list()
 	required_tech_levels = list()
 	cost = 3500
 

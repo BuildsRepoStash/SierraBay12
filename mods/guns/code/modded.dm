@@ -323,7 +323,7 @@
 /datum/design/item/weapon/c20a
 	id = "c20a"
 	req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
-	materials = list(MATERIAL_STEEL = 8000, MATERIAL_SILVER = 3000, MATERIAL_DIAMOND = 1500)
+	materials = list(MATERIAL_STEEL = 11000, MATERIAL_SILVER = 4000, MATERIAL_DIAMOND = 2000)
 	build_path = /obj/item/gun/projectile/automatic/sec_smg/c20a
 	sort_string = "TAZGA"
 
@@ -364,10 +364,6 @@
 /obj/item/projectile/bullet/pistol/holdout/ap
 	damage = 30
 	armor_penetration = 15
-	//[SIERRA-ADD] - Mechs-by-Shegar
-	mech_armor_penetration = 0
-	mech_armor_damage = 20 //15 попаданий чтоб сорвать броню
-	//[SIERRA-ADD]
 
 /obj/item/storage/box/ammo/smg_nt
 	name = "box of 7mm box magazines - lethal"

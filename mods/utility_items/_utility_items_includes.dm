@@ -60,4 +60,11 @@
 #include "code/ghost_medscan.dm"
 #include "code/chem_mine.dm"
 #include "code/sheetsnatcher.dm"
+#include "code/cell_rack.dm"
+#include "code/sniper_smoke.dm"
+#include "code/force_open_to_constructs.dm"
+#include "code/coat_rack/adding.dm"
+#include "code/coat_rack/can_be_added.dm"
+#include "code/coat_rack/coat_rack.dm"
+#include "code/coat_rack/removing.dm"
 #endif

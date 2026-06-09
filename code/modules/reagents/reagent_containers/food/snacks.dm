@@ -3980,3 +3980,57 @@
 	w_class = ITEM_SIZE_TINY
 	bitesize = 3
 	volume = 15
+
+/obj/item/reagent_containers/food/snacks/ribs
+	name = "honey ribs"
+	desc = "A rack of ribs slow cooked with honey and sweet BBQ sauce."
+	icon_state = "ribs"
+	center_of_mass = "x=17;y=18"
+	nutriment_amt = 10
+	nutriment_desc = list("sticky sweet meat" = 1)
+	w_class = ITEM_SIZE_TINY
+	bitesize = 3
+	volume = 15
+
+/obj/item/reagent_containers/food/snacks/ramen
+	name = "bowl of ramen"
+	desc = "A large bowl of ramen with all the trimmings."
+	icon_state = "ramen"
+	center_of_mass = "x=17;y=18"
+	nutriment_amt = 10
+	nutriment_desc = list("warm salty broth" = 1)
+	w_class = ITEM_SIZE_TINY
+	bitesize = 3
+	volume = 15
+
+/obj/item/reagent_containers/food/snacks/bbqwich
+	name = "\improper BBQ sandwich"
+	desc = "A pulled barbeque sandwich, with barbeque sauce."
+	icon_state = "bbq_sandwich"
+	center_of_mass = "x=17;y=18"
+	nutriment_amt = 5
+	nutriment_desc = list("sweet and spicy meat" = 1)
+	w_class = ITEM_SIZE_TINY
+	bitesize = 3
+	volume = 15
+
+/obj/item/reagent_containers/food/snacks/sliceable/clowncake
+	name = "clown cake"
+	desc = "You've honked your last honk."
+	icon_state = "clown_cake"
+	slice_path = /obj/item/reagent_containers/food/snacks/slice/clowncake
+	slices_num = 5
+	filling_color = "#ffb85d"
+	center_of_mass = "x=16;y=12"
+	nutriment_amt = 10
+	nutriment_desc = list("banana and silliness" = 1)
+
+/obj/item/reagent_containers/food/snacks/slice/clowncake
+	name = "slice of clown cake"
+	desc = "A slice of colorful cake. Is that a clown nose instead of a cherry?"
+	icon_state = "clown_cake_slice"
+	filling_color = "#ffb85d"
+	trash = /obj/item/trash/plate
+	bitesize = 3
+	center_of_mass = "x=16;y=12"
+	whole_path = /obj/item/reagent_containers/food/snacks/sliceable/clowncake

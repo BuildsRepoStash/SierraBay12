@@ -7,7 +7,7 @@
 	minimal_player_age = 14
 	minimum_character_age = list(SPECIES_HUMAN = 28)
 	ideal_character_age = 45
-	economic_power = 8
+	economic_power = 9
 	skill_points = 26
 
 	total_positions = 2
@@ -68,7 +68,7 @@
 
 	minimum_character_age = list(SPECIES_HUMAN = 19)
 	ideal_character_age = 26
-	economic_power = 7
+	economic_power = 6
 	skill_points = 22
 
 	alt_titles = list(
@@ -125,7 +125,8 @@
 	selection_color = "#013d3b"
 	alt_titles = list(
 		"Orderly" = /singleton/hierarchy/outfit/job/sierra/crew/medical/doctor/orderly,
-		"Nurse" = /singleton/hierarchy/outfit/job/sierra/crew/medical/doctor/nurse
+		"Nurse" = /singleton/hierarchy/outfit/job/sierra/crew/medical/doctor/nurse,
+		"Trainee EMT" = /singleton/hierarchy/outfit/job/sierra/crew/medical/doctor/emt
 	)
 	outfit_type = /singleton/hierarchy/outfit/job/sierra/crew/medical/paramedic
 	allowed_branches = list(
@@ -167,7 +168,7 @@
 
 	minimum_character_age = list(SPECIES_HUMAN = 24)
 	ideal_character_age = 26
-	economic_power = 5
+	economic_power = 7
 	skill_points = 18
 
 	total_positions = 2 //[было 1]

@@ -217,20 +217,19 @@
 /obj/random/advdevice,
 /obj/random/powercell,
 /obj/item/device/gps,
+/obj/item/gun/energy/darkmatter,
 /turf/simulated/floor/tiled/techmaint/vox,
 /area/voxship/fore)
 "aJ" = (
 /obj/structure/table/rack,
-/obj/item/gun/energy/darkmatter,
-/obj/item/gun/energy/sonic,
 /obj/item/gun/launcher/alien/spikethrower,
 /obj/item/gun/launcher/alien/slugsling,
-/obj/item/gun/launcher/alien/spikethrower,
+/obj/item/gun/energy/voxshot,
+/obj/item/gun/energy/darkmatter,
 /turf/simulated/floor/tiled/techmaint/vox,
 /area/voxship/fore)
 "aK" = (
 /obj/structure/table/rack,
-/obj/item/rig/vox,
 /obj/item/rig/vox,
 /obj/machinery/light/small{
 	dir = 1
@@ -7956,7 +7955,7 @@ fX
 fX
 fX
 fX
-fX
+gz
 fX
 fX
 fX
@@ -8156,7 +8155,7 @@ eW
 fo
 aa
 fX
-fX
+gz
 gx
 gz
 gL
@@ -8367,7 +8366,7 @@ gN
 gV
 hb
 gz
-fX
+gz
 fX
 fG
 fG
@@ -8571,7 +8570,7 @@ gP
 gX
 hd
 gz
-fX
+gz
 fX
 fX
 fG
@@ -8673,7 +8672,7 @@ gQ
 gY
 he
 gz
-fX
+gz
 fX
 fX
 fG
@@ -8970,9 +8969,9 @@ dE
 eB
 eZ
 cg
-aa
+ac
 fX
-fX
+gz
 gz
 gJ
 gT
@@ -9081,7 +9080,7 @@ gK
 gK
 gK
 gz
-fX
+gz
 fX
 fX
 fS
@@ -9177,7 +9176,7 @@ cg
 ac
 fX
 fX
-fX
+gz
 fX
 fX
 fX

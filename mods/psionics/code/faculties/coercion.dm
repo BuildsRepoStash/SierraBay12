@@ -25,7 +25,6 @@
 	cost =           25
 	cooldown =       120
 	use_ranged =     TRUE
-	use_melee =      TRUE
 	min_rank =       PSI_RANK_OPERANT
 	use_description = "Выберите глаза и переключитесь на синий интент. Затем, нажмите куда угодно чтобы применить круговую атаку, слепящую и оглушающую всех, кто оказался поблизости."
 
@@ -35,7 +34,7 @@
 	. = ..()
 	if(.)
 		user.visible_message(SPAN_DANGER("[user] закидывает голову назад, издавая пронзительный крик!"))
-		to_chat(user, SPAN_DANGER("Вы издаёте пронзительный крик, оглушая всех вокруг!"))
+		to_chat(user, SPAN_DANGER("Я издаю пронзительный крик, оглушая всех вокруг!"))
 		var/cn_rank = user.psi.get_rank(PSI_COERCION)
 		for(var/mob/living/M in range(user, user.psi.get_rank(PSI_COERCION)))
 			if(M == user)
